@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from '../task.model';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -7,13 +9,32 @@ import { Task } from '../task.model';
   styleUrls: ['./task-detail.component.scss']
 })
 export class TaskDetailComponent implements OnInit {
-  @Input() task: Task;
+  task: Task;
+  id: number;
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute, 
+    private taskService: TaskService) {
 
   }
 
   ngOnInit(): void {
-    
+    this.route.params
+    .subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.task = this.taskService.getTask(this.id);
+      }
+    )
+  }
+
+  onEditTask() {
+    this.router.navigate(['edit'], {relativeTo: this.route})
+  }
+
+  onDeleteTask() {
+    this.taskService.deleteTask(this.id);
+    this.router.navigate(['/tasks']);
   }
 }

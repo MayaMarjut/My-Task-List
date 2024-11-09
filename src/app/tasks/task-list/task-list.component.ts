@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from '../task.model';
+import { TaskService } from '../task.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -7,21 +9,24 @@ import { Task } from '../task.model';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-  @Output() taskWasSelected = new EventEmitter<Task>();
+  tasks: Task[];
 
-  tasks: Task[] = [
-    new Task('Cleaning', 'Clean the house'),
-    new Task('Crogeries', 'Need some crogeries for the pixxa tonight'),
-  ];
-
-  constructor() {}
+  constructor(private taskService: TaskService, 
+              private router: Router,
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
-
+    this.taskService.tasksChanged
+      .subscribe(
+        (tasks: Task[]) => {
+          this.tasks = tasks;
+        }
+      )
+    this.tasks = this.taskService.getTasks();
   }
 
-  onTaskSelected(task: Task) {
-      this.taskWasSelected.emit(task);
-    }
+  createNewTask() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
 
 }
