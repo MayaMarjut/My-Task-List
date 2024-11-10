@@ -1,48 +1,31 @@
 <div class="row">
-	<div class="col-xs-12">
-		<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+	<div class="col-xs 12">
+		<form (ngSubmit)="onSubmit(f)" #f="ngForm">
 			<div class="row">
-				<div class="col-xs-12">
-					<button type="submit" class="btn btn-success">Save</button>
-					<button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+				<div class="col-sm-5 form-group">
+					<label for="name">Name</label>
+					<input 
+						type="text" 
+						id="name" 
+						class="form-control"
+						name="name"
+						[pattern]="'^[a-zA-Z0-9]*$'"
+						ngModel
+						required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="form-group">
-						<label for="name">Name</label>
-						<input
-							type="text"
-							id="name"
-							formControlName="name"
-							class="form-control">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="form-group">
-						<label for="name">Status</label>
-						<input
-							type="text"
-							id="status"
-							formControlName="status"
-							class="form-control">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="form-group">
-						<label for="name">Description</label>
-						<textarea
-							type="text"
-							id="description"
-							formControlName="description"
-							class="form-control"
-							rows="6">
-						</textarea>	
-					</div>
+					<button 
+						class="btn btn-success" 
+						type="submit" 
+						[disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}}</button>
+					<button 
+						*ngIf="editMode"
+						class="btn btn-danger" 
+						type="button" 
+						(click)="onDelete()">Delete</button>
+					<button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
 				</div>
 			</div>
 		</form>

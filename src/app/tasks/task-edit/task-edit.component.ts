@@ -1,67 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { TaskService } from '../task.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { TaskService } from '../task-service';
+import { Task } from 'src/app/shared/task.model';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task-edit',
   templateUrl: './task-edit.component.html',
   styleUrls: ['./task-edit.component.scss']
 })
-export class TaskEditComponent implements OnInit {
-  id: number;
+export class TaskEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f', {static: false}) taskListForm: NgForm;
+  subscription: Subscription;
   editMode = false;
-  taskForm: FormGroup;
+  editedItemIndex: number;
+  editedItem: Task;
+  id: number;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private taskService: TaskService) {
+    constructor(private taskService: TaskService) {
 
-  }
+    }
+
+    onAddItem(form: NgForm) {
+      const value = form.value;
+      const newTask = new Task(value.name);
+      if(this.editMode) {
+        this.taskService.updateTask(this.editedItemIndex, newTask);
+      } else {
+        this.taskService.addSingleTask(newTask);
+      }
+      this.editMode = false;
+      form.reset();
+    }
 
   ngOnInit() {
-    this.route.params
-    .subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.editMode = params['id'] != null;
-        this.initForm();
-      }
-    )
+    this.taskService.startedEditing
+      .subscribe(
+        (index: number) => {
+          this.editedItemIndex = index;
+          this.editMode = true;
+          this.editedItem = this.taskService.getSingleTask(index);
+          this.taskListForm.setValue({
+            name: this.editedItem.name,
+          })
+        }
+      )
   }
 
-  onCancel() {
-    console.log('I was cliked');
-    this.router.navigate(['../'], {relativeTo: this.route});
+  ngOnDestroy(): void {
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
-  onSubmit() {
-    if(this.editMode) {
-      this.taskService.updateTask(this.id, this.taskForm.value);
+  onSubmit(form: NgForm) {
+    const value = form.value;
+    const newTaskList = new Task(value.name);
+    if(this.editMode){
+      this.taskService.updateTask(this.editedItemIndex, newTaskList);
     } else {
-      this.taskService.addTask(this.taskForm.value);
+      this.taskService.addSingleTask(newTaskList);
     }
-    // this.onCancel();
+    this.editMode = false;
+    form.reset();
   }
 
+  onClear(){
+    this.taskListForm.reset();
+    this.editMode = false;
+  }
 
-  private initForm() {
-    let taskName = '';
-    let taskStatus = '';
-    let taskDescription = '';
-
-    if (this.editMode) {
-      const task = this.taskService.getTask(this.id);
-      taskName = task.name;
-      taskStatus = task.status;
-      taskDescription = task.description;
-    }
-    
-    this.taskForm = new FormGroup({
-      'name': new FormControl(taskName),
-      'status': new FormControl(taskStatus),
-      'description': new FormControl(taskDescription),
-    });
+  onDelete() {
+    this.taskService.deleteTask(this.editedItemIndex);
+    this.onClear();
   }
 }

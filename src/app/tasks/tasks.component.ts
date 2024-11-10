@@ -1,26 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { Task } from './task.model';
-import { TaskService } from './task.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Task } from '../shared/task.model';
+import { TaskService } from './task-service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.scss'],
-  providers: [TaskService]
+  styleUrls: ['./tasks.component.scss']
 })
-export class TasksComponent implements OnInit {
-  selectedTask: Task;
+export class TasksComponent implements OnInit, OnDestroy {
+  tasks: Task[];
+  private taskChangeSub: Subscription;
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService) {}
 
-  }
-
-  ngOnInit() {
-    this.taskService.taskSelected
+  ngOnInit(): void {
+    this.tasks = this.taskService.getTasks();
+    this.taskChangeSub = this.taskService.taskChanged
       .subscribe(
-        (task: Task) => {
-          this.selectedTask = task;
+        (tasks: Task[]) => {
+          this.tasks = tasks;
         }
       );
+  }
+
+  addTask(task: Task) {
+    this.tasks.push(task);
+  }
+
+  ngOnDestroy(): void {
+    this.taskChangeSub.unsubscribe();
+  }
+
+  onEditTask(index: number) {
+    this.taskService.startedEditing.next(index);
   }
 }
