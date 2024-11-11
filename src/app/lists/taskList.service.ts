@@ -3,19 +3,24 @@ import { TaskList } from "./list.model";
 import { Subject } from "rxjs";
 import { Task } from "../shared/task.model";
 import { TaskService } from "../tasks/task-service";
+import { StatusOption } from "../shared/taskStatus.model";
 
 @Injectable()
 export class TaskListService {
 	listChanged = new Subject<TaskList[]>;
+	stat1: StatusOption = 'doing';
+	stat2: StatusOption = 'done';
+	stat3: StatusOption = 'todo';
+
 
 	private lists: TaskList[] = [
-		new TaskList('CleaningList','OK', 'description', [
-			new Task('Clean windows'),
-			new Task('Clean toilet'),
+		new TaskList('CleaningList', [
+			new Task('Clean windows', this.stat1, 'description'),
+			new Task('Clean toilet', this.stat2, 'description'),
 		]),
-		new TaskList('Crogeries', 'OK', 'Need some crogeries for the pixxa tonight', [
-			new Task('Buy toilet paper'),
-			new Task('Buy food'),
+		new TaskList('Crogeries', [
+			new Task('Buy toilet paper',this.stat3, 'Need some crogeries for the pixxa tonight'),
+			new Task('Buy food', this.stat1, 'Need some crogeries for the pixxa tonight'),
 		]),
 	  ];
 

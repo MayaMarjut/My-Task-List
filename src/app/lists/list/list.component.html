@@ -1,13 +1,15 @@
-<div class="row">
+<div class="row" style="margin-bottom: 20px">
 	<div class="col-xs-12">
-		<button class="btn btn-success" (click)="onNewTaskList()">New List</button>
+		<ul style="list-style: none; padding-left: 0">
+			<app-list-item 
+			*ngFor="let listEl of lists; let i = index"
+			[list]="listEl"
+			[index]="i"></app-list-item>
+		</ul>
 	</div>
 </div>
-<div class="row">
+<div class="row" style="margin-bottom: 20px">
 	<div class="col-xs-12">
-		<app-list-item 
-		*ngFor="let listEl of lists; let i = index"
-		[list]="listEl"
-		[index]="i"></app-list-item>
+		<button class="btn btn-primary" (click)="onNewTaskList()">Create New List</button>
 	</div>
 </div>

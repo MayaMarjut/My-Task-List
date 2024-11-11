@@ -1,0 +1,1 @@
+export type StatusOption = 'doing' | 'done' | 'todo';

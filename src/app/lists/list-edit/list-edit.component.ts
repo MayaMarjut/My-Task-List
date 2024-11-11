@@ -13,6 +13,7 @@ export class ListEditComponent implements OnInit {
   id: number;
   editMode = false;
   taskForm: FormGroup;
+  listName = '';
 
   constructor(
     private router: Router,
@@ -60,16 +61,11 @@ export class ListEditComponent implements OnInit {
   }
 
   private initForm() {
-    let listName = '';
-    let listStatus = '';
-    let listDescription = '';
     let listTasks = new FormArray([]);
 
     if (this.editMode) {
       const list = this.taskListService.getTaskList(this.id);
-      listName = list.name;
-      listStatus = list.status;
-      listDescription = list.description;
+      this.listName = list.name;
       if (list['tasks']){
         for (let task of list.tasks) {
           listTasks.push(
@@ -84,9 +80,7 @@ export class ListEditComponent implements OnInit {
     }
     
     this.taskForm = new FormGroup({
-      'name': new FormControl(listName, Validators.required),
-      'status': new FormControl(listStatus),
-      'description': new FormControl(listDescription),
+      'name': new FormControl(this.listName, Validators.required),
       'tasks': listTasks
     });
   }

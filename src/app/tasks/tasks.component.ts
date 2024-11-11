@@ -33,6 +33,11 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.taskChangeSub.unsubscribe();
   }
 
+  onFilterTasks(sorting: string) {
+    this.tasks = this.taskService.getTasks();
+    this.tasks = this.tasks.filter(p => p.status === sorting);
+  }
+
   onEditTask(index: number) {
     this.taskService.startedEditing.next(index);
   }

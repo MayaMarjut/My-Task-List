@@ -1,80 +1,62 @@
 <div class="row">
 	<div class="col-xs-12">
-		<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-			<div class="row">
-				<div class="col-xs-12">
-					<button type="submit" 
-						class="btn btn-success"
-						[disabled]="!taskForm.valid">Save</button>
-					<button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="form-group">
-						<label for="name">Name</label>
-						<input
-							type="text"
-							id="name"
-							formControlName="name"
-							class="form-control">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="form-group">
-						<label for="name">Status</label>
-						<input
-							type="text"
-							id="status"
-							formControlName="status"
-							class="form-control">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="form-group">
-						<label for="name">Description</label>
-						<textarea
-							type="text"
-							id="description"
-							formControlName="description"
-							class="form-control"
-							rows="6">
-						</textarea>	
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12" formArrayName="tasks">
-					<div class="row" 
-						*ngFor="let taskCtrl of controls; let i = index"
-						[formGroupName]="i">
-						<div class="col-xs-8">
-							<input type="text" 
-								class="form-control"
-								formControlName="name">
-						</div>
-						<div class="col-xs-2">
-							<button class="btn btn-danger">
-								x
-							</button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12">
-							<button 
-								type="button" 
-								class="btn btn-success" 
-								(click)="onAddTask()">
-								Add Task
-							</button>
+		<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="list-group-item" style="padding: 20px 20px 50px 20px;">
+			<fieldset>
+				<legend style="font-size: 36px; margin-top: 25px; margin-bottom: 10px; border-bottom: none;">{{ this.listName ? this.listName : 'List'}}</legend>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label for="name">List name</label>
+							<input
+								type="text"
+								id="name"
+								formControlName="name"
+								class="form-control">
 						</div>
 					</div>
 				</div>
-			</div>
+				<fieldset>
+					<legend>Tasks</legend>
+						<div class="col-xs-12" formArrayName="tasks">
+							<div class="row" style="margin-bottom: 5px"
+								*ngFor="let taskCtrl of controls; let i = index"
+								[formGroupName]="i">
+								<div class="col-xs-1">{{i + 1}}</div>
+								<div class="col-xs-8">
+									<input type="text" 
+										class="form-control"
+										formControlName="name">
+								</div>
+								<div class="col-xs-2">
+									<button class="btn btn-danger">
+										x
+									</button>
+								</div>
+							</div>
+							<div class="row" style="margin-top: 10px">
+								<div class="col-xs-12">
+									<button 
+										type="button" 
+										class="btn btn-success" 
+										(click)="onAddTask()">
+										Add Task
+									</button>
+								</div>
+							</div>
+						</div>
+				</fieldset>
+				<hr>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="float-right">
+							<button type="submit" 
+							class="btn btn-success"
+							[disabled]="!taskForm.valid">Save</button>
+						<button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+						</div>
+					</div>
+				</div>
+		</fieldset>
 		</form>
 	</div>
 </div>
