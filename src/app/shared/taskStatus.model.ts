@@ -1,1 +1,1 @@
-export type StatusOption = 'doing' | 'done' | 'todo';
+export type StatusOption = 'Doing' | 'Done' | 'Todo';

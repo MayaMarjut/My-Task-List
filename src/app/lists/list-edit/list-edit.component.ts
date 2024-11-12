@@ -102,7 +102,7 @@ export class ListEditComponent implements OnInit {
     }
     
     this.taskForm = new FormGroup({
-      'name': new FormControl(this.listName, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]*$/), this.matchingListName()]),
+      'name': new FormControl(this.listName, [Validators.required, Validators.pattern(/^^[a-zA-Z0-9 ]+$/), this.matchingListName()]),
       'tasks': listTasks
     });
   }

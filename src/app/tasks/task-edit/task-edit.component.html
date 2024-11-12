@@ -56,23 +56,22 @@
 								</label>
 							</div>
 						</fieldset>
-						{{selectedOption}}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12">
-						<button 
-							class="btn btn-success" 
-							type="submit" 
-							style="margin-right: 5px"
-							[disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}}</button>
+					<div class="col-xs-12 confirm-button-group">
+						<button class="btn btn-secondary" type="button" (click)="onClear()">Clear</button>
 						<button 
 							*ngIf="editMode"
 							class="btn btn-danger" 
 							type="button" 
 							style="margin-right: 5px"
 							(click)="onDelete()">Delete</button>
-						<button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+							<button 
+							class="btn btn-primary" 
+							type="submit" 
+							style="margin-right: 5px"
+							[disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}}</button>
 					</div>
 				</div>
 		</fieldset>

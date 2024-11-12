@@ -1,16 +1,17 @@
 <div class="row" style="display: flex; align-items: flex-end; margin-bottom: 10px;">
-	<div class="col-xs-6">
+	<div class="col-sm-6">
 		<h2>{{ list.name }}</h2>
 	</div>
-	<div class="col-xs-3">
-		<div class="btn-group" appDropdown>
-			<button class="btn btn-primary dropdown-toggle">Manage List</button>
-			<ul class="dropdown-menu">
-				<li><a (click)="onAddToListOfTasks()" style="cursor: pointer">To Task List</a></li>
-				<li><a (click)="onEditList()" style="cursor: pointer">Edit List</a></li>
-				<li><a (click)="onDeleteList()" style="cursor: pointer">Delete List</a></li>
-			</ul>
-		</div>
+</div>
+<div class="row btn-group filtering-group">
+	<div class="col-3">
+		<button type="button" class="btn btn-secondary" (click)="onAddToListOfTasks()">Add tasks to Tasks</button>
+	</div>
+	<div class="col-3">
+		<button type="button" class="btn btn-secondary" (click)="onEditList()">Edit List</button>
+	</div>
+	<div class="col-3">
+		<button type="button" class="btn btn-secondary" (click)="onDeleteList()">Delete List</button>
 	</div>
 </div>
 <div class="row" style="padding: 20px 20px">

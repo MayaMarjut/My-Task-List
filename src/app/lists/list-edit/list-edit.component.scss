@@ -7,3 +7,28 @@ text-area.ng-invalid {
 .errorMsg {
 	color: red;
 }
+
+.required {
+	font-weight: 400;
+	padding-left: 10px;
+}
+
+.task-group-legend {
+	font-weight: 700;
+	font-size: 14px;
+	display: inline;
+	border: none;
+	margin-bottom: 5px;
+}
+
+.confirm-button-group {
+	display: flex;
+	justify-content: flex-end;
+	button {
+		margin-right: 5px;
+	}
+}
+
+.bi-plus-square {
+
+}

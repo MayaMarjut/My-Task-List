@@ -1,0 +1,25 @@
+.btn-group {
+	display: flex;
+	h3 {
+		font-weigth: 700;
+		font-size: 20px;
+		margin-top: 10px;
+	}
+}
+
+.filtering-group {
+	display: flex;
+	list-style: none;
+	padding-left: 20px;
+	& button{
+		margin-left: 5px;
+	}
+}
+
+.edit-task-button {
+	display: flex;
+	justify-content: flex-end;
+	.bi-pencil {
+		margin-right: 10px;
+	}
+}

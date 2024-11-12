@@ -10,20 +10,20 @@
 				<h2 style="font-size: 21px; font-weight: 400">All tasks</h2>
 			</div>
 			<div class="col-sm-2">
-				<div class="btn-group" appDropdown>
-					<button class="btn btn-primary dropdown-toggle">Filter Tasks</button>
-					<ul class="dropdown-menu">
-						<li><a (click)="onFilterTasks('done')" style="cursor: pointer">By Status Done</a></li>
-						<li><a (click)="onFilterTasks('doing')" style="cursor: pointer">By Status Doing</a></li>
-						<li><a (click)="onFilterTasks('todo')" style="cursor: pointer">By Status Todo</a></li>
+				<div class="btn-group">
+					<h3>Filter</h3>
+					<ul class="filtering-group">
+						<li><button type="button" class="btn btn-secondary" (click)="onFilterTasks('Done')">Done</button></li>
+						<li><button type="button" class="btn btn-secondary" (click)="onFilterTasks('Doing')">Doing</button></li>
+						<li><button type="button" class="btn btn-secondary" (click)="onFilterTasks('Todo')">Todo</button></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<ul class="list-group" style="list-style: none;">
-				<li *ngFor="let taskItem of tasks; let i = index" style="margin-bottom: 10px; cursor: pointer;">
-					<a  class="list-group-item" (click)="onEditTask(i)">
+				<li *ngFor="let taskItem of tasks; let i = index" style="margin-bottom: 10px;">
+					<div  class="list-group-item">
 						<div class="row">
 							<dl>
 							<div class="col-xs-5" style="margin-bottom: 5px;">
@@ -34,13 +34,19 @@
 								<dt>Status</dt>
 								<dd>{{taskItem.status}}</dd>
 							</div>
-							<div class="col-xs-12">
+							<div class="col-xs-8">
 								<dt>Description</dt>
 								<dd>{{taskItem.description}}</dd>
 							</div>
 							</dl>
+							<div class="col-xs-12 edit-task-button">
+								<button class="btn btn-info" attr.aria-label="Edit task {{taskItem.name}}" (click)="onEditTask(i)">
+									<i class="bi bi-pencil" aria-hidden="true"></i>
+									Edit
+								</button>
+							</div>
 						</div>
-					</a>
+					</div>
 				</li>
 			</ul>
 		</div>

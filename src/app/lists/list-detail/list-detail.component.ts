@@ -6,6 +6,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 @Component({
   selector: 'app-list-detail',
   templateUrl: './list-detail.component.html',
+  styleUrls: ['./list-detail.component.scss']
 })
 export class ListDetailComponent implements OnInit {
   list: TaskList;

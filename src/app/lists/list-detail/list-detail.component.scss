@@ -1,5 +1,12 @@
-.list-group-item:hover,
-.list-group-item:focus,
-{
-	background-color: #fff;
+.btn-group {
+	display: flex;
+}
+
+.filtering-group {
+	display: flex;
+	list-style: none;
+	padding-left: 20px;
+	& button{
+		margin-left: 5px;
+	}
 }

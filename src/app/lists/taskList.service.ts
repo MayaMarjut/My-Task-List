@@ -8,19 +8,19 @@ import { StatusOption } from "../shared/taskStatus.model";
 @Injectable()
 export class TaskListService {
 	listChanged = new Subject<TaskList[]>;
-	stat1: StatusOption = 'doing';
-	stat2: StatusOption = 'done';
-	stat3: StatusOption = 'todo';
+	stat1: StatusOption = 'Doing';
+	stat2: StatusOption = 'Done';
+	stat3: StatusOption = 'Todo';
 
 
 	private lists: TaskList[] = [
-		new TaskList('CleaningList', [
-			new Task('Clean windows', this.stat1, 'description'),
-			new Task('Clean toilet', this.stat2, 'description'),
+		new TaskList('Cleaning List', [
+			new Task('Clean windows', this.stat1, 'Clean the kitchen window'),
+			new Task('Clean toilet', this.stat2, 'It is dirty'),
 		]),
-		new TaskList('Crogeries', [
-			new Task('Buy toilet paper',this.stat3, 'Need some crogeries for the pixxa tonight'),
-			new Task('Buy food', this.stat1, 'Need some crogeries for the pixxa tonight'),
+		new TaskList('Homework', [
+			new Task('Study French',this.stat3, 'Read the chapters 1 and 2'),
+			new Task('Study Math', this.stat1, 'Do the homework'),
 		]),
 	  ];
 

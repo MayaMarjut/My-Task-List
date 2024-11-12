@@ -19,9 +19,9 @@ export class TaskEditComponent implements OnInit, OnDestroy {
   editedItem: Task;
   id: number;
   selectedOption?: string = '';
-  stat1: StatusOption = 'doing';
-	stat2: StatusOption = 'done';
-	stat3: StatusOption = 'todo';
+  stat1: StatusOption = 'Doing';
+	stat2: StatusOption = 'Done';
+	stat3: StatusOption = 'Todo';
 
 
     constructor(private taskService: TaskService) {}

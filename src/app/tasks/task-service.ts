@@ -5,12 +5,12 @@ import { StatusOption } from "../shared/taskStatus.model";
 export class TaskService {
 	taskChanged = new Subject<Task[]>();
 	startedEditing = new Subject<number>();
-	stat1: StatusOption = 'todo';
-	stat2: StatusOption = 'done';
+	stat1: StatusOption = 'Todo';
+	stat2: StatusOption = 'Done';
 
 	private tasks: Task[] = [
-		new Task('Tehtäväa', this.stat1, 'kuvaus'),
-		new Task('Siivousa',this.stat2, 'kuvaus'),
+		new Task('Vacuum', this.stat1, 'Vacuum the whole house'),
+		new Task('Go grocery shopping',this.stat2, 'By everything for the dinner'),
 	];
 
 	getTasks() {
