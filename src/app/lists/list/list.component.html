@@ -1,7 +1,7 @@
 <div class="row" style="margin-bottom: 20px">
 	<div class="col-xs-12">
-		<ul style="list-style: none; padding-left: 0">
-			<app-list-item 
+		<ul class="list-group" style="list-style: none; padding-left: 0">
+			<app-list-item
 			*ngFor="let listEl of lists; let i = index"
 			[list]="listEl"
 			[index]="i"></app-list-item>

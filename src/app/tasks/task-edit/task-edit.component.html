@@ -5,27 +5,43 @@
 				<legend>Create Task</legend>
 				<div class="row">
 					<div class="col-sm-5 form-group">
-						<label for="name">Name</label>
+						<label for="name">Name<span class="required">(required)</span></label>
 						<input 
 							type="text" 
 							id="name" 
 							class="form-control"
 							name="name"
+							aria-describedby="errorMsgName"
+							placeholder="{{editMode ? this.editedItem.name : 'Your task name'}}"
 							ngModel
-							required>
+							required
+							#name="ngModel">
+							<div *ngIf="name.invalid && name.touched"
+								id="errorMsgName" class="errorMsg">
+								Task name is required
+							</div>
 					</div>
 					<div class="col-sm-5 form-group">
-						<label for="desc">Description</label>
+						<label for="desc">Description<span class="required">(required)</span></label>
 						<input 
 							type="text" 
 							id="desc" 
 							class="form-control"
+							aria-describedby="errorMsgDesc"
 							name="desc"
-							ngModel>
+							placeholder="{{editMode ? this.editedItem.description : 'Your task description'}}"
+							ngModel
+							required
+							#desc="ngModel">
+							<div *ngIf="desc.invalid && desc.touched" id="errorMsgDesc" class="errorMsg">
+							Task description is required
+						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-2 form-group">
+					<div class="col-xs-4 form-group">
+						<fieldset>
+							<legend class="radio-button-group-legend">Task Status<span class="required">(required)</span></legend>
 							<div *ngFor="let option of options; let i = index">
 								<label for="{{option.id}}">
 									<input 
@@ -33,10 +49,13 @@
 										[(ngModel)]="selectedOption"
 										name="options"
 										[id]="option.id"
-										[value]="option.value"/>
+										[value]="option.value"
+										[checked]="editMode ? this.editedItem.status : null"
+										required />
 									{{ option.value }}
 								</label>
 							</div>
+						</fieldset>
 						{{selectedOption}}
 					</div>
 				</div>

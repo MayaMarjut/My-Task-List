@@ -16,25 +16,23 @@
 <div class="row" style="padding: 20px 20px">
 	<h3>Tasks</h3>
 	<ul class="list-group" style="list-style: none;">
-		<li *ngFor="let task of list.tasks; let i = index" style="margin-bottom: 10px;">
-			<a class="list-group-item">
-				<div class="row">
-					<dl>
-					<div class="col-xs-5" style="margin-bottom: 5px;">
-						<dt>Name</dt>
-						<dd>{{task.name}}</dd>
-					</div>
-					<div class="col-xs-5">
-						<dt>Status</dt>
-						<dd>{{task.status}}</dd>
-					</div>
-					<div class="col-xs-12">
-						<dt>Description</dt>
-						<dd>{{task.description}}</dd>
-					</div>
-					</dl>
+		<li *ngFor="let task of list.tasks; let i = index" style="margin-bottom: 10px;" class="list-group-item">
+			<div class="row">
+				<dl>
+				<div class="col-xs-5" style="margin-bottom: 5px;">
+					<dt>Name</dt>
+					<dd>{{task.name}}</dd>
 				</div>
-			</a>
+				<div class="col-xs-5">
+					<dt>Status</dt>
+					<dd>{{task.status}}</dd>
+				</div>
+				<div class="col-xs-12">
+					<dt>Description</dt>
+					<dd>{{task.description}}</dd>
+				</div>
+				</dl>
+			</div>
 		</li>
 	</ul>
 </div>
