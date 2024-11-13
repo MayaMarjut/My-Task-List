@@ -10,6 +10,7 @@
 							<input
 								type="text"
 								id="name"
+								[attr.aria-invalid]="taskForm.get('name')?.invalid"
 								aria-describedby="errorMsgListName"
 								formControlName="name"
 								class="form-control">
@@ -19,6 +20,9 @@
 									</ng-container>
 									<ng-container *ngIf="taskForm.get('name')?.errors?.['pattern']">
 										List name is must only contain characters from a-Z and numbers
+									</ng-container>
+									<ng-container *ngIf="taskForm.get('name')?.errors?.['maxlength']">
+										List name cannot exceed over 60 chracters
 									</ng-container>
 									<ng-container *ngIf="taskForm.get('name')?.errors?.['matchingListName']">
 										List name already exists

@@ -14,7 +14,6 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 import { TaskItemComponent } from './tasks/task-item/task-item.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskService } from './tasks/task-service';
-import { DropdownDirective } from './shared/dropdown.directive';
 import { ListDetailComponent } from './lists/list-detail/list-detail.component';
 
 @NgModule({
@@ -30,7 +29,6 @@ import { ListDetailComponent } from './lists/list-detail/list-detail.component';
     TaskEditComponent,
     TaskItemComponent,
     TasksComponent,
-    DropdownDirective
   ],
   imports: [
     BrowserModule,

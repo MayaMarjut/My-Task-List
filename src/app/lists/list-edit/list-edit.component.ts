@@ -4,6 +4,7 @@ import { TaskListService } from '../taskList.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TaskList } from '../list.model';
 import { Observable, tap } from 'rxjs';
+import { ListNameValidators } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-list-edit',
@@ -40,10 +41,8 @@ export class ListEditComponent implements OnInit {
     const name: string = control.value;
     let matchingListName : boolean;
 
-    console.log(this.editMode);
-
     if(!name) {
-      return {  matchingListName: false };
+      return null;
     } 
 
     if(!this.editMode){
@@ -53,7 +52,7 @@ export class ListEditComponent implements OnInit {
         }
       });
     }
-      return !matchingListName ? null : { matchingListName: false}
+      return matchingListName ? {matchingListName: true} : null
     } 
   } 
 
@@ -102,7 +101,7 @@ export class ListEditComponent implements OnInit {
     }
     
     this.taskForm = new FormGroup({
-      'name': new FormControl(this.listName, [Validators.required, Validators.pattern(/^^[a-zA-Z0-9 ]+$/), this.matchingListName()]),
+      'name': new FormControl(this.listName, [Validators.required, Validators.pattern(/^^[a-zA-Z0-9 ]+$/), this.matchingListName(), ListNameValidators.maxLengthValidator(60)]),
       'tasks': listTasks
     });
   }

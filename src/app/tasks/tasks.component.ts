@@ -40,5 +40,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   onEditTask(index: number) {
     this.taskService.startedEditing.next(index);
+    const nameInputToFocus = document.getElementById('name');
+    nameInputToFocus?.focus();
   }
 }

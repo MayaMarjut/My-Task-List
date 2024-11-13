@@ -11,6 +11,7 @@
 							id="name" 
 							class="form-control"
 							name="name"
+							[attr.aria-invalid]="name.invalid"
 							aria-describedby="errorMsgName"
 							placeholder="{{editMode ? this.editedItem.name : 'Your task name'}}"
 							ngModel
@@ -28,6 +29,7 @@
 							id="desc" 
 							class="form-control"
 							aria-describedby="errorMsgDesc"
+							[attr.aria-invalid]="desc.invalid"
 							name="desc"
 							placeholder="{{editMode ? this.editedItem.description : 'Your task description'}}"
 							ngModel
@@ -48,10 +50,12 @@
 										type="radio" 
 										[(ngModel)]="selectedOption"
 										name="options"
+										[attr.aria-invalid]="!selectedOption"
 										[id]="option.id"
 										[value]="option.value"
 										[checked]="editMode ? this.editedItem.status : null"
-										required />
+										required 
+										#radio="ngModel"/>
 									{{ option.value }}
 								</label>
 							</div>
@@ -67,7 +71,7 @@
 							type="button" 
 							style="margin-right: 5px"
 							(click)="onDelete()">Delete</button>
-							<button 
+						<button 
 							class="btn btn-primary" 
 							type="submit" 
 							style="margin-right: 5px"
