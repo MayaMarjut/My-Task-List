@@ -10,7 +10,5 @@ export class TaskItemComponent implements OnInit {
   @Input() task: Task;
   @Input() index: number;
 
-  ngOnInit(): void {
-    console.log(this.index);
-  }
+  ngOnInit(): void {}
 }

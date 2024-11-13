@@ -68,13 +68,11 @@
 						<button 
 							*ngIf="editMode"
 							class="btn btn-danger" 
-							type="button" 
-							style="margin-right: 5px"
+							type="button"
 							(click)="onDelete()">Delete</button>
 						<button 
 							class="btn btn-primary" 
 							type="submit" 
-							style="margin-right: 5px"
 							[disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}}</button>
 					</div>
 				</div>

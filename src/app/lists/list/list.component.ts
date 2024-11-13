@@ -25,7 +25,6 @@ export class ListComponent implements OnInit {
     this.lists = this.taskListService.getTaskLists();
   }
 
-  // Dropdown menu navigointi
   onNewTaskList() {
     this.router.navigate(['new'], {relativeTo: this.route})
   }

@@ -4,29 +4,50 @@
 	</div>
 	<div class="col-sm-10">
 		<app-task-edit></app-task-edit>
-		<hr style="margin-bottom: 20px"/>
+		<hr class="divider"/>
 		<div class="row">
 			<div class="col-sm-6">
-				<h2 style="font-size: 21px; font-weight: 400">All tasks</h2>
+				<h2 class="all-tasks-heading">All tasks</h2>
 			</div>
 			<div class="col-sm-2">
 				<div class="btn-group">
 					<h3>Filter</h3>
 					<ul class="filtering-group">
-						<li><button type="button" class="btn btn-secondary" (click)="onFilterTasks('Done')">Done</button></li>
-						<li><button type="button" class="btn btn-secondary" (click)="onFilterTasks('Doing')">Doing</button></li>
-						<li><button type="button" class="btn btn-secondary" (click)="onFilterTasks('Todo')">Todo</button></li>
+						<li>
+							<button 
+								type="button" 
+								class="btn btn-secondary" 
+								(click)="onFilterTasks('Done')">
+								Done
+							</button>
+						</li>
+						<li>
+							<button 
+								type="button" 
+								class="btn btn-secondary" 
+								(click)="onFilterTasks('Doing')">
+								Doing
+							</button>
+						</li>
+						<li>
+							<button 
+								type="button" 
+								class="btn btn-secondary" 
+								(click)="onFilterTasks('Todo')">
+								Todo
+							</button>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<ul class="list-group" style="list-style: none;">
-				<li *ngFor="let taskItem of tasks; let i = index" style="margin-bottom: 10px;">
+				<li *ngFor="let taskItem of tasks; let i = index" class="list-item-wrapper">
 					<div  class="list-group-item">
 						<div class="row">
 							<dl>
-							<div class="col-xs-5" style="margin-bottom: 5px;">
+							<div class="col-xs-5 list-item-dl-item">
 								<dt>Name</dt>
 								<dd>{{taskItem.name}}</dd>
 							</div>
@@ -40,7 +61,9 @@
 							</div>
 							</dl>
 							<div class="col-xs-12 edit-task-button">
-								<button class="btn btn-info" attr.aria-label="Edit task {{taskItem.name}}" (click)="onEditTask(i)">
+								<button class="btn btn-info" 
+										attr.aria-label="Edit task {{taskItem.name}}" 
+										(click)="onEditTask(i)">
 									<i class="bi bi-pencil" aria-hidden="true"></i>
 									Edit
 								</button>

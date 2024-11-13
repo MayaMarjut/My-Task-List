@@ -6,7 +6,28 @@
 	display: flex;
 	list-style: none;
 	padding-left: 20px;
-	& button{
+
+	button.btn-secondary {
 		margin-left: 5px;
+	}
+}
+
+.list-detail {
+	display: flex; 
+	align-items: flex-end; 
+	margin-bottom: 10px;
+}
+
+.list-detail-tasks {
+	padding: 20px 20px;
+
+	.list-group {
+		list-style: none;
+		.list-group-item {
+			margin-bottom: 10px;
+		}
+	}
+	.list-detail-tasks-dl-item {
+		margin-bottom: 5px;
 	}
 }

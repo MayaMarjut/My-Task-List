@@ -1,26 +1,42 @@
-<div class="row" style="display: flex; align-items: flex-end; margin-bottom: 10px;">
+<div class="row">
 	<div class="col-sm-6">
 		<h2>{{ list.name }}</h2>
 	</div>
 </div>
 <div class="row btn-group filtering-group">
 	<div class="col-3">
-		<button type="button" class="btn btn-secondary" (click)="onAddToListOfTasks()">Add tasks to Tasks</button>
+		<button 
+			type="button" 
+			class="btn btn-secondary" 
+			(click)="onAddToListOfTasks()">
+		Add tasks to Tasks
+	</button>
 	</div>
 	<div class="col-3">
-		<button type="button" class="btn btn-secondary" (click)="onEditList()">Edit List</button>
+		<button
+			id="edit-list-btn"
+			type="button" 
+			class="btn btn-secondary" 
+			(click)="onEditList()">
+			Edit List
+		</button>
 	</div>
 	<div class="col-3">
-		<button type="button" class="btn btn-secondary" (click)="onDeleteList()">Delete List</button>
+		<button 
+			type="button" 
+			class="btn btn-secondary" 
+			(click)="onDeleteList()">
+		Delete List
+	</button>
 	</div>
 </div>
-<div class="row" style="padding: 20px 20px">
+<div class="row list-detail-tasks">
 	<h3>Tasks</h3>
-	<ul class="list-group" style="list-style: none;">
-		<li *ngFor="let task of list.tasks; let i = index" style="margin-bottom: 10px;" class="list-group-item">
+	<ul class="list-group">
+		<li *ngFor="let task of list.tasks; let i = index" class="list-group-item">
 			<div class="row">
 				<dl>
-				<div class="col-xs-5" style="margin-bottom: 5px;">
+				<div class="col-xs-5 list-detail-tasks-dl-item">
 					<dt>Name</dt>
 					<dd>{{task.name}}</dd>
 				</div>

@@ -59,8 +59,10 @@ export class ListEditComponent implements OnInit {
   onSubmit() {
     if(this.editMode) {
       this.taskListService.updateTaskList(this.id, this.taskForm.value);
+      this.focusToEditButton();
     } else {
       this.taskListService.addTaskList(this.taskForm.value);
+      this.focusToCreateNewList();
     }
     this.onCancel();
   }
@@ -79,13 +81,29 @@ export class ListEditComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
+    if (!this.editMode) {
+      this.focusToCreateNewList();
+    } else {
+      this.focusToEditButton();
+    }
+  }
+
+  focusToEditButton() {
+    setTimeout(() => {
+      const returnToEdit = document.getElementById('edit-list-btn');
+      returnToEdit?.focus();
+    }, 100);
+  }
+
+  focusToCreateNewList() {
+    const returnToCreateB = document.getElementById('new-list-button');
+    returnToCreateB?.focus();
   }
 
   private initForm() {
     let listTasks = new FormArray([]);
 
     if (this.editMode) {
-      console.log('minä editoin');
       const list = this.taskListService.getTaskList(this.id);
 
       this.listName = list.name;

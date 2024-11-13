@@ -41,5 +41,7 @@ export class ListDetailComponent implements OnInit {
   onDeleteList() {
     this.taskListService.deleteTaskList(this.id);
     this.router.navigate(['/lists']);
+    const returnToCreateB = document.getElementById('new-list-button');
+    returnToCreateB?.focus();
   }
 }

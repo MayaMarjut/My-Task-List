@@ -7,12 +7,29 @@
 	}
 }
 
+.divider{
+	margin-bottom: 20px
+}
+
+h2.all-tasks-heading {
+	font-size: 21px; 
+	font-weight: 400
+}
+
 .filtering-group {
 	display: flex;
 	list-style: none;
 	padding-left: 20px;
 	& button{
 		margin-left: 5px;
+	}
+}
+
+li.list-item-wrapper {
+	margin-bottom: 10px;
+
+	.list-item-dl-item {
+		margin-bottom: 5px;
 	}
 }
 

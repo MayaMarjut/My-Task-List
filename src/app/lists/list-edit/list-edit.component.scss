@@ -1,3 +1,14 @@
+.list-edit-form {
+	padding: 20px 20px 50px 20px;
+
+	.list-edit-form-legend {
+		font-size: 36px; 
+		margin-top: 25px; 
+		margin-bottom: 10px; 
+		border-bottom: none;
+	}
+}
+
 input.ng-invalid.ng-touched,
 input.ng-invalid.ng-touched,
 text-area.ng-invalid {
@@ -19,6 +30,10 @@ text-area.ng-invalid {
 	display: inline;
 	border: none;
 	margin-bottom: 5px;
+
+	.task-group-wrapper {
+		margin-bottom: 5px;
+	}
 }
 
 .confirm-button-group {
@@ -27,8 +42,4 @@ text-area.ng-invalid {
 	button {
 		margin-right: 5px;
 	}
-}
-
-.bi-plus-square {
-
 }
