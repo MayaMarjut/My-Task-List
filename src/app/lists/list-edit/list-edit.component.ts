@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TaskList } from '../list.model';
 import { Observable, tap } from 'rxjs';
 import { ListNameValidators } from 'src/app/shared/validators';
+import { StatusOption } from 'src/app/shared/taskStatus.model';
 
 @Component({
   selector: 'app-list-edit',
@@ -17,6 +18,10 @@ export class ListEditComponent implements OnInit {
   taskForm: FormGroup;
   listName = '';
   lists: TaskList[];
+
+  stat1: StatusOption = 'Doing';
+	stat2: StatusOption = 'Done';
+	stat3: StatusOption = 'Todo';
   observer: Observable<any>;
 
   constructor(
@@ -25,7 +30,11 @@ export class ListEditComponent implements OnInit {
     private taskListService: TaskListService,
     ) {}
 
-    
+    options = [
+      { id: 1, value: this.stat1, label: 'ToDo'},
+      { id: 2, value: this.stat2, label: 'Doing'},
+      { id: 3, value: this.stat3, label: 'Done'},
+    ];
 
   ngOnInit() {
     this.lists = this.taskListService.getTaskLists();
@@ -35,7 +44,6 @@ export class ListEditComponent implements OnInit {
       this.initForm();
     }))
   }
-
 
   matchingListName() { return (control: AbstractControl) => {
     const name: string = control.value;
@@ -73,6 +81,8 @@ export class ListEditComponent implements OnInit {
     (<FormArray>this.taskForm.get('tasks')).push(
       new FormGroup({
         'name': new FormControl(null),
+        'description': new FormControl(null),
+        'status': new FormControl(null),
       })
     );
   }
@@ -109,7 +119,9 @@ export class ListEditComponent implements OnInit {
         for (let task of list.tasks) {
           listTasks.push(
             new FormGroup({
-              'name': new FormControl(task.name)
+              'name': new FormControl(task.name),
+              'description': new FormControl(task.description),
+              'status': new FormControl(task.status),
             })
           );
         }

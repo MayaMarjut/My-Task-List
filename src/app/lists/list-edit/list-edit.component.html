@@ -35,20 +35,46 @@
 					<legend class="task-group-legend">Tasks</legend>
 						<div class="col-xs-12" formArrayName="tasks">
 							<div class="row task-group-wrapper"
-								*ngFor="let taskCtrl of controls; let i = index"
-								[formGroupName]="i">
-								<div class="col-xs-8">
+								*ngFor="let taskCtrl of controls; let i = index" [formGroupName]="i">
+								<div class="col-xs-8 task-group-name">
+									<label for="taskName">Name:</label>
 									<input type="text" 
+										id="taskName"
 										class="form-control"
 										formControlName="name">
 								</div>
-								<div class="col-xs-2">
+								<div class="col-xs-8 task-group-description">
+									<label for="taskDesc">Description:</label>
+									<textarea
+										id="taskDesc"
+										class="form-control"
+										formControlName="description"></textarea>
+								</div>
+								<div class="col-xs-8 form-group">
+									<fieldset>
+										<legend class="radio-button-group-legend">Status</legend>
+									<div *ngFor="let option of options; let i = index">
+										<label class="radio-button-group-label" for="{{option.id}}">
+											<input 
+												type="radio" 
+												[id]="option.id"
+												class="form-control"
+												[value]="option.value"
+												[formControlName]="'status'"
+												[checked]="taskCtrl.value.status === option.value">
+												{{ option.value }}
+										</label>
+									</div>
+								</fieldset>
+								</div>
+								<div class="col-xs-3">
 									<button 
 										type="button" 
 										class="btn btn-danger"
 										aria-label="Delete"
 										(click)="onDeleteTask(i)">
-										<i class="bi bi-x-lg" aria-hidden="true"></i>
+										Delete Task
+										<i class="bi bi-x-lg delete-icon" aria-hidden="true"></i>
 									</button>
 								</div>
 							</div>

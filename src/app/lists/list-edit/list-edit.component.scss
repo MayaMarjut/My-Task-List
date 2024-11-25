@@ -26,14 +26,49 @@ text-area.ng-invalid {
 
 .task-group-legend {
 	font-weight: 700;
-	font-size: 14px;
 	display: inline;
-	border: none;
 	margin-bottom: 5px;
+	border: none;
+}
 
-	.task-group-wrapper {
+.task-group-wrapper {
+	margin-bottom: 5px;
+	margin-top: 20px;
+	border-top: 1px solid #e5e5e5;
+}
+
+.task-group {
+	&-name {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	&-description {
+		margin-bottom: 20px;
+	}
+
+}
+
+.radio-button-group {
+	&-legend {
+		font-weight: 700;
+		font-size: 14px;
+		display: inline;
+		border: none;
 		margin-bottom: 5px;
 	}
+	&-label {
+	display: inline-flex;
+	}
+}
+
+.delete-icon {
+	margin-left: 3px;
+}
+
+input[type=radio] {
+	height: 16px;
+	margin-top: 0;
+	margin-right: 5px;
 }
 
 .confirm-button-group {
