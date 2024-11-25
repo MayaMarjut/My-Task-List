@@ -45,19 +45,20 @@ export class ListEditComponent implements OnInit {
     }))
   }
 
-  matchingListName() { return (control: AbstractControl) => {
+  matchingListName(listName: string) { return (control: AbstractControl) => {
     const name: string = control.value;
     let matchingListName : boolean;
 
     if(!name) {
       return null;
     } 
-
-    this.lists.forEach(element => {
-      if(element.name === name) {
-        matchingListName = true;
-      }
-    });
+    if(name != listName) {
+      this.lists.forEach(element => {
+        if(element.name === name) {
+          matchingListName = true;
+        }
+      });
+    }
     return matchingListName ? {matchingListName: true} : null
     } 
   } 
@@ -129,7 +130,7 @@ export class ListEditComponent implements OnInit {
     }
     
     this.taskForm = new FormGroup({
-      'name': new FormControl(this.listName, [Validators.required, Validators.pattern(/^^[a-zA-Z0-9 ]+$/), this.matchingListName(), ListNameValidators.maxLengthValidator(60)]),
+      'name': new FormControl(this.listName, [Validators.required, Validators.pattern(/^^[a-zA-Z0-9 ]+$/), this.matchingListName(this.listName), ListNameValidators.maxLengthValidator(60)]),
       'tasks': listTasks
     });
   }
