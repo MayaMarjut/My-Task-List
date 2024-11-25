@@ -13,7 +13,7 @@
 							name="name"
 							[attr.aria-invalid]="name.invalid"
 							aria-describedby="errorMsgName"
-							placeholder="{{editMode ? this.editedItem.name : 'Your task name'}}"
+							placeholder="Your task name"
 							ngModel
 							required
 							#name="ngModel">
@@ -31,7 +31,7 @@
 							aria-describedby="errorMsgDesc"
 							[attr.aria-invalid]="desc.invalid"
 							name="desc"
-							placeholder="{{editMode ? this.editedItem.description : 'Your task description'}}"
+							placeholder="Your task description"
 							ngModel
 							required
 							#desc="ngModel">
