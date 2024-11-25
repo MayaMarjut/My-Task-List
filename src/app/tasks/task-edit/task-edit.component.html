@@ -53,9 +53,8 @@
 										[attr.aria-invalid]="!selectedOption"
 										[id]="option.id"
 										[value]="option.value"
-										[checked]="editMode ? this.editedItem.status : null"
 										required 
-										#radio="ngModel"/>
+										#options="ngModel"/>
 									{{ option.value }}
 								</label>
 							</div>

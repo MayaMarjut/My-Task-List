@@ -18,7 +18,7 @@ export class TaskEditComponent implements OnInit, OnDestroy {
   editedItemIndex: number;
   editedItem: Task;
   id: number;
-  selectedOption?: string = '';
+  selectedOption?: StatusOption;
   stat1: StatusOption = 'Doing';
 	stat2: StatusOption = 'Done';
 	stat3: StatusOption = 'Todo';
@@ -32,20 +32,8 @@ export class TaskEditComponent implements OnInit, OnDestroy {
       { id: 3, value: this.stat3, label: 'Done'},
     ];
 
-    onAddItem(form: NgForm) {
-      const value = form.value;
-      const newTask = new Task(value.name, value.stat, value.desc);
-      if(this.editMode) {
-        this.taskService.updateTask(this.editedItemIndex, newTask);
-      } else {
-        this.taskService.addSingleTask(newTask);
-      }
-      this.editMode = false;
-      form.reset();
-    }
-
   ngOnInit() {
-    this.taskService.startedEditing
+  this.subscription = this.taskService.startedEditing
       .subscribe(
         (index: number) => {
           this.editedItemIndex = index;
@@ -53,6 +41,8 @@ export class TaskEditComponent implements OnInit, OnDestroy {
           this.editedItem = this.taskService.getSingleTask(index);
           this.taskListForm.setValue({
             name: this.editedItem.name,
+            desc: this.editedItem.description,
+            options: this.editedItem.status,
           })
         }
       )
@@ -66,8 +56,8 @@ export class TaskEditComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     const value = form.value;
-    value.stat = this.selectedOption;
-    const newTaskList = new Task(value.name, value.stat, value.desc);
+    value.stats = this.selectedOption;
+    const newTaskList = new Task(value.name, value.stats, value.desc);
     if(this.editMode){
       this.taskService.updateTask(this.editedItemIndex, newTaskList);
     } else {
