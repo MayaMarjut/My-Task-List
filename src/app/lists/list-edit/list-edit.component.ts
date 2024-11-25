@@ -45,14 +45,12 @@ export class ListEditComponent implements OnInit {
       return null;
     } 
 
-    if(!this.editMode){
-      this.lists.forEach(element => {
-        if(element.name === name) {
-          matchingListName = true;
-        }
-      });
-    }
-      return matchingListName ? {matchingListName: true} : null
+    this.lists.forEach(element => {
+      if(element.name === name) {
+        matchingListName = true;
+      }
+    });
+    return matchingListName ? {matchingListName: true} : null
     } 
   } 
 

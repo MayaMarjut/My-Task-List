@@ -11,10 +11,10 @@ import { ListEditComponent } from './lists/list-edit/list-edit.component';
 import { ListItemComponent } from './lists/list/list-item/list-item.component';
 import { ListComponent } from './lists/list/list.component';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
-import { TaskItemComponent } from './tasks/task-item/task-item.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskService } from './tasks/task-service';
 import { ListDetailComponent } from './lists/list-detail/list-detail.component';
+import { TaskListService } from './lists/taskList.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { ListDetailComponent } from './lists/list-detail/list-detail.component';
     ListDetailComponent,
     ListComponent,
     TaskEditComponent,
-    TaskItemComponent,
     TasksComponent,
   ],
   imports: [
@@ -36,7 +35,7 @@ import { ListDetailComponent } from './lists/list-detail/list-detail.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [TaskService],
+  providers: [TaskService, TaskListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

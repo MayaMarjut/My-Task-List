@@ -5,7 +5,6 @@ import { TaskListService } from './taskList.service';
   selector: 'app-lists',
   templateUrl: './lists.component.html',
   styleUrls: ['./lists.component.scss'],
-  providers: [TaskListService]
 })
 export class ListsComponent implements OnInit {
 

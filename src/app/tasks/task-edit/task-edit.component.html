@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
 		<form (ngSubmit)="onSubmit(f)" #f="ngForm">
 			<fieldset>
-				<legend>Create Task</legend>
+				<legend>{{ editMode ? 'Update Task' : 'Create Task'}}</legend>
 				<div class="row">
 					<div class="col-sm-5 form-group">
 						<label for="name">Name<span class="required">(required)</span></label>

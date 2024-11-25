@@ -24,10 +24,6 @@ export class TasksComponent implements OnInit, OnDestroy {
       );
   }
 
-  addTask(task: Task) {
-    this.tasks.push(task);
-  }
-
   ngOnDestroy(): void {
     this.taskChangeSub.unsubscribe();
   }

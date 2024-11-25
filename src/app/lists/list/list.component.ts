@@ -16,13 +16,13 @@ export class ListComponent implements OnInit {
               private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.lists = this.taskListService.getTaskLists();
     this.taskListService.listChanged
       .subscribe(
         (lists: TaskList[]) => {
           this.lists = lists;
         }
       )
-    this.lists = this.taskListService.getTaskLists();
   }
 
   onNewTaskList() {
