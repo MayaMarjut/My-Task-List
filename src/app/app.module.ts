@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,16 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskService } from './tasks/task-service';
 import { ListDetailComponent } from './lists/list-detail/list-detail.component';
-import { TaskListService } from './lists/taskList.service';
+import { ListService } from './lists/list.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { CreateListDialogComponent } from './lists/create-list-dialog/create-list-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -28,14 +38,24 @@ import { TaskListService } from './lists/taskList.service';
     ListComponent,
     TaskEditComponent,
     TasksComponent,
+    CreateListDialogComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    MatDividerModule,
+    MatOptionModule
   ],
-  providers: [TaskService, TaskListService],
+  providers: [TaskService, ListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

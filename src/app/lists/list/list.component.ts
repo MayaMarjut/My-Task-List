@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskList } from '../list.model';
-import { TaskListService } from '../taskList.service';
+import { ListItem } from '../list.model';
+import { ListService } from '../list.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { openCreateListDialog } from '../create-list-dialog/create-list-dialog.component';
+import { filter } from 'rxjs';
+import { Task } from 'src/app/shared/task.model';
 
 @Component({
   selector: 'app-list',
@@ -9,24 +13,34 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  lists: TaskList[];
+  lists: ListItem[];
 
-  constructor(private taskListService: TaskListService, 
+  constructor(private listService: ListService, 
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.lists = this.taskListService.getTaskLists();
-    this.taskListService.listChanged
+    this.lists = this.listService.getTaskLists();
+    this.listService.listChanged
       .subscribe(
-        (lists: TaskList[]) => {
+        (lists: ListItem[]) => {
           this.lists = lists;
         }
       )
   }
 
-  onNewTaskList() {
-    this.router.navigate(['new'], {relativeTo: this.route})
+  onNewListItem() {
+    // this.router.navigate(['new'], {relativeTo: this.route})
+    const list = {} as ListItem;
+
+    openCreateListDialog(this.dialog, list)
+    .pipe(
+      filter(val => !! val)
+    )
+    .subscribe(
+      val => console.log("new list value:", val)
+    )
   }
 
 }

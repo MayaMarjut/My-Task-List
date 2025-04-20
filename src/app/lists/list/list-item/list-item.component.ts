@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { TaskList } from '../../list.model';
+import { ListItem} from '../../list.model';
 
 @Component({
   selector: 'app-list-item',
@@ -7,7 +7,7 @@ import { TaskList } from '../../list.model';
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent implements OnInit {
-  @Input() list: TaskList;
+  @Input() list: ListItem;
   @Input() index: number;
 
   ngOnInit() {

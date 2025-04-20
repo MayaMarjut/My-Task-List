@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskList } from '../list.model';
-import { TaskListService } from '../taskList.service';
+import { ListItem} from '../list.model';
+import { ListService } from '../list.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
@@ -9,13 +9,13 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./list-detail.component.scss']
 })
 export class ListDetailComponent implements OnInit {
-  list: TaskList;
+  list: ListItem;
   id: number;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute, 
-    private taskListService: TaskListService
+    private listService: ListService
     ) {
 
   }
@@ -25,13 +25,13 @@ export class ListDetailComponent implements OnInit {
     .subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this.list = this.taskListService.getTaskList(this.id);
+        this.list = this.listService.getListItem(this.id);
       }
     )
   }
 
   onAddToListOfTasks() {
-    this.taskListService.addTasksToListOfTasks(this.list.tasks);
+    this.listService.addTasksToListOfTasks(this.list.tasks);
   }
 
   onEditList() {
@@ -39,7 +39,7 @@ export class ListDetailComponent implements OnInit {
   }
 
   onDeleteList() {
-    this.taskListService.deleteTaskList(this.id);
+    this.listService.deleteListItem(this.id);
     this.router.navigate(['/lists']);
     const returnToCreateB = document.getElementById('new-list-button');
     returnToCreateB?.focus();

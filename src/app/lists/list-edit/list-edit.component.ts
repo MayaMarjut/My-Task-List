@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { TaskListService } from '../taskList.service';
+import { ListService } from '../list.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { TaskList } from '../list.model';
+import { ListItem} from '../list.model';
 import { Observable, tap } from 'rxjs';
 import { ListNameValidators } from 'src/app/shared/validators';
 import { StatusOption } from 'src/app/shared/taskStatus.model';
@@ -17,7 +17,7 @@ export class ListEditComponent implements OnInit {
   editMode = false;
   taskForm: FormGroup;
   listName = '';
-  lists: TaskList[];
+  lists: ListItem[];
 
   stat1: StatusOption = 'Doing';
 	stat2: StatusOption = 'Done';
@@ -27,7 +27,7 @@ export class ListEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private taskListService: TaskListService,
+    private listService: ListService,
     ) {}
 
     options = [
@@ -37,7 +37,7 @@ export class ListEditComponent implements OnInit {
     ];
 
   ngOnInit() {
-    this.lists = this.taskListService.getTaskLists();
+    this.lists = this.listService.getTaskLists();
     this.observer = this.route.params.pipe(tap((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
@@ -65,10 +65,10 @@ export class ListEditComponent implements OnInit {
 
   onSubmit() {
     if(this.editMode) {
-      this.taskListService.updateTaskList(this.id, this.taskForm.value);
+      this.listService.updateListItem(this.id, this.taskForm.value);
       this.focusToEditButton();
     } else {
-      this.taskListService.addTaskList(this.taskForm.value);
+      this.listService.addListItem(this.taskForm.value);
       this.focusToCreateNewList();
     }
     this.onCancel();
@@ -113,7 +113,7 @@ export class ListEditComponent implements OnInit {
     let listTasks = new FormArray([]);
 
     if (this.editMode) {
-      const list = this.taskListService.getTaskList(this.id);
+      const list = this.listService.getListItem(this.id);
 
       this.listName = list.name;
       if (list['tasks']){

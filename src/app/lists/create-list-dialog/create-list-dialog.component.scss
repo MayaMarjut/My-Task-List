@@ -1,0 +1,38 @@
+.create-list-dialog-container {
+	mat-form-field {
+		width: 30rem;
+	}
+}
+
+.mdc-dialog__content {
+	padding-top: 1rem;
+}
+
+.create-list-dialog-legend {
+	padding-top: 1rem;
+	border-bottom: 0;
+	letter-spacing: normal;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.create-list-dialog-divider {
+	margin-bottom: 2rem;
+}
+
+.create-list-dialog-button-row {
+	padding-top: 2rem;
+	display: flex;
+	.mat-mdc-mini-fab {
+		margin-left: 1rem;
+		margin-top: 1rem;
+	}
+  }
+
+.create-list-dialog-button-add {
+	letter-spacing: normal;
+}
+
+.dialog-actions-container {
+	margin: 1rem 2rem;
+}
