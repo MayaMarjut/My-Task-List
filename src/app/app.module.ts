@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatOptionModule } from '@angular/material/core';
+import { EditListDialogComponent } from './lists/edit-list-dialog/edit-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatOptionModule } from '@angular/material/core';
     TaskEditComponent,
     TasksComponent,
     CreateListDialogComponent,
+    EditListDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,9 +3,9 @@ import { ListItem } from '../list.model';
 import { ListService } from '../list.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { openCreateListDialog } from '../create-list-dialog/create-list-dialog.component';
 import { filter } from 'rxjs';
 import { Task } from 'src/app/shared/task.model';
+import { openCreateListDialog } from '../create-list-dialog/create-list-dialog.component';
 
 @Component({
   selector: 'app-list',

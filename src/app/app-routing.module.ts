@@ -10,9 +10,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/lists', pathMatch: 'full'},
   {path: 'lists', component: ListsComponent, children: [
     { path: '', component: ListLandingComponent},
-    { path: 'new', component: ListEditComponent},
     { path: ':id', component: ListDetailComponent},
-    { path: ':id/edit', component: ListEditComponent},
   ]},
   {path: 'tasks', component: TasksComponent},
 ];

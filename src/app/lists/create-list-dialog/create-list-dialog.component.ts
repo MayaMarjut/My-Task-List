@@ -4,11 +4,7 @@ import { ListItem } from '../list.model';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ListService } from '../list.service';
 import { Task } from 'src/app/shared/task.model';
-
-interface StatusOption {
-    value: string;
-    viewValue: string;
-}
+import { Status } from 'src/app/shared/taskStatus.model';
 
 @Component({
   selector: 'app-create-list-dialog',
@@ -34,9 +30,8 @@ export class CreateListDialogComponent {
 
   name: string;
 
-  selectedValue: string;
 
-  options: StatusOption[] = [
+  options: Status[] = [
     { value: 'todo', viewValue: 'ToDo'},
     { value: 'doing', viewValue: 'Doing'},
     { value: 'done', viewValue: 'Done'},
