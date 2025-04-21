@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ListService } from '../list.service';
+import { ListService } from '../../list.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ListItem} from '../list.model';
+import { ListItem} from '../../list.model';
 import { Observable, tap } from 'rxjs';
 import { ListNameValidators } from 'src/app/shared/validators';
 import { StatusOption } from 'src/app/shared/taskStatus.model';
 
 @Component({
-  selector: 'app-list-edit',
-  templateUrl: './list-edit.component.html',
-  styleUrls: ['./list-edit.component.scss'],
+  selector: 'app-list-item-edit',
+  templateUrl: './list-item-edit.component.html',
+  styleUrls: ['./list-item-edit.component.scss'],
 })
-export class ListEditComponent implements OnInit {
+export class ListItemEditComponent implements OnInit {
   id: number;
   editMode = false;
   taskForm: FormGroup;

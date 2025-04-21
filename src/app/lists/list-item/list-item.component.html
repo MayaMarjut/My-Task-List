@@ -1,0 +1,26 @@
+<mat-accordion *ngIf="lists?.length > 0; else noLists">
+	<mat-expansion-panel *ngFor="let item of lists; let i = index">
+	  <mat-expansion-panel-header class="list-accordion-header">
+		<mat-panel-title>{{ item.name }}</mat-panel-title>
+		<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Dropdown menu" class="list-accordion-header-button">
+			<mat-icon color="primary">more_vert</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="onEditList(item, i)">
+			  <mat-icon>edit</mat-icon>
+			  <span>Edit List</span>
+			</button>
+			<button mat-menu-item (click)="onDeleteList(i)">
+			  <mat-icon>delete</mat-icon>
+			  <span>Delete List</span>
+			</button>
+		  </mat-menu>
+	</mat-expansion-panel-header>
+  
+	  <app-list-item-detail [id]="i"></app-list-item-detail>
+	</mat-expansion-panel>
+  </mat-accordion>
+  
+  <ng-template #noLists>
+	<p>No lists to show</p>
+  </ng-template>
