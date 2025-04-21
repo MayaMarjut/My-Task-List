@@ -40,6 +40,20 @@ export class EditListDialogComponent {
       this.lists = this.listService.getTaskLists();
     }
 
+    onAddTask() {
+      const taskGroup = this._fb.group({
+        name: [''],
+        description: [''],
+        status: [null],
+      });
+    
+     this.tasks.push(taskGroup);
+    }
+
+    onDeleteTask(index: number): void {
+      this.tasks.removeAt(index);
+    }
+
     close() {
       this.dialogRef.close();
     }

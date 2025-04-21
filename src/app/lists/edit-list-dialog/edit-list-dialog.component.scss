@@ -1,7 +1,15 @@
+.mdc-dialog__content {
+	padding-top: 1rem;
+}
+
 .edit-list-dialog-container-task-group {
 	&__name,
 	&__desc {
 		width: 30rem;
+	}
+
+	.edit-list-dialog-legend {
+		border-bottom: 0;
 	}
 
 	.edit-list-dialog-divider {
@@ -10,7 +18,21 @@
 
 }
 
-.edit-list-dialog-status-row {
-	display: flex;
-	justify-content: space-between;
+.edit-list-dialog {
+	&-status-row {
+		display: flex;
+		justify-content: space-between;
+	}
+	&-button-row {
+		padding-top: 2rem;
+		display: flex;
+		.mat-mdc-mini-fab {
+			margin-left: 1rem;
+			margin-top: 1rem;
+		}
+	}
+}
+
+.dialog-actions-container {
+	margin: 1rem 2rem;
 }

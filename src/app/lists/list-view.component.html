@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="list-view-header">
+		<div class="list-view-header__title">
+			<h1>Lists</h1>
+			<p class="lists-guidance">Select a list to be viewed</p>
+		</div>
+		<div class="list-view-header__button">
+			<button mat-button color="primary" class="create-list-dialog-button-add"
+				(click)="onNewListItem()">
+				<mat-icon>add</mat-icon>
+				Create new list
+			</button>
+		</div>
+	</div>
+	<app-list></app-list>
+	<div class="col-md-5">
+		<router-outlet></router-outlet>
+	</div>
+</div>

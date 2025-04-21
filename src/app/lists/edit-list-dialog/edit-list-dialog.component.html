@@ -1,5 +1,5 @@
 <div class="edit-list-dialog-container">
-	<h2 mat-dialog-title>Edit Listan nimi</h2>
+	<h2 mat-dialog-title>Edit {{ this.data.list.name }} list</h2>
 	<mat-dialog-content>
 		<form [formGroup]="form">
 			<mat-form-field appearance="outline">
@@ -24,18 +24,28 @@
 							</mat-select>
 						</mat-form-field>
 					</div>
-					<mat-form-field appearance="outline" class="edit-list-dialog-container-task-group__desc">
-						<mat-label>Description</mat-label>
-						<textarea matInput placeholder="Describtion of a task" formControlName="description"></textarea>
-					</mat-form-field>
+					<div class="edit-list-dialog-button-row">
+						<mat-form-field appearance="outline" class="edit-list-dialog-container-task-group__desc">
+							<mat-label>Description</mat-label>
+							<textarea matInput placeholder="Describtion of a task" formControlName="description"></textarea>
+						</mat-form-field>
+						<button mat-mini-fab aria-label="Delete Task" (click)="onDeleteTask(i)">
+							<mat-icon aria-hidden="true">delete</mat-icon>
+						</button>
+					</div>
 				</div>
 			</div>
+			<button mat-button color="primary" class="create-list-dialog-button-add"
+			(click)="onAddTask()">
+			<mat-icon>add</mat-icon>
+			Add Task
+	</button>
 		</fieldset>
 		</form>
 
 
 	</mat-dialog-content>
-	<mat-dialog-actions [align]="'end'">
+	<mat-dialog-actions [align]="'end'" class="dialog-actions-container">
 		<button mat-button mat-stroked-button
 			(click)="close()">
 			Cancel

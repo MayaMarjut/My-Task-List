@@ -1,0 +1,15 @@
+.list-view-header {
+	display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+	&__button {
+		button {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+.lists-guidance {
+	margin-bottom: 20px
+}
