@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ListItem } from '../list.model';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ListService } from '../list.service';
@@ -11,7 +11,7 @@ import { Status } from 'src/app/shared/taskStatus.model';
   templateUrl: './create-list-dialog.component.html',
   styleUrls: ['./create-list-dialog.component.scss']
 })
-export class CreateListDialogComponent {
+export class CreateListDialogComponent implements OnInit {
 
   constructor(private _fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) private list: ListItem,
@@ -21,21 +21,27 @@ export class CreateListDialogComponent {
       this.name = list.name;
   }
 
-  form = this._fb.group({
-    name: [this.list?.name || '', Validators.required],
-    tasks: this._fb.array(
-      this.list?.tasks?.map(task => this.createTaskFormGroup(task)) ?? []
-    )
-  });
-
   name: string;
 
+  lists: ListItem[];
+
+  form: FormGroup;
 
   options: Status[] = [
     { value: 'todo', viewValue: 'ToDo'},
     { value: 'doing', viewValue: 'Doing'},
     { value: 'done', viewValue: 'Done'},
   ];
+
+  ngOnInit() {
+    this.lists = this.listService.getTaskLists();
+    this.form = this._fb.group({
+      name: [this.list?.name, [Validators.required, this.matchingListName(this.list.name)]],
+      tasks: this._fb.array(
+        this.list?.tasks?.map(task => this.createTaskFormGroup(task)) ?? []
+      )
+    });
+  }
 
   close() {
     this.dialogRef.close();
@@ -45,6 +51,19 @@ export class CreateListDialogComponent {
     this.dialogRef.close(this.form.value);
     this.listService.addListItem(this.form.value);
   }
+
+  matchingListName(currentName: string) { 
+    return (control: AbstractControl): ValidationErrors | null => {
+    const inputName = control.value;
+
+    if(!inputName || inputName === currentName) {
+      return null;
+    } 
+
+    const nameExists = this.lists.some(list => list.name === inputName);
+    return nameExists ? { matchingListName: true } : null;
+    } 
+  } 
 
   get tasks(): FormArray {
     return this.form.get('tasks') as FormArray;
