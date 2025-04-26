@@ -36,7 +36,10 @@ export class CreateListDialogComponent implements OnInit {
   ngOnInit() {
     this.lists = this.listService.getTaskLists();
     this.form = this._fb.group({
-      name: [this.list?.name, [Validators.required, this.matchingListName(this.list.name)]],
+      name: [this.list?.name, [Validators.required, 
+        Validators.pattern(/^^[a-zA-Z0-9 ]+$/), 
+        this.matchingListName(this.list.name),
+        Validators.maxLength(60)]],
       tasks: this._fb.array(
         this.list?.tasks?.map(task => this.createTaskFormGroup(task)) ?? []
       )

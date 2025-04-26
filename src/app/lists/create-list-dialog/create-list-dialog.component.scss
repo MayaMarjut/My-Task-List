@@ -36,3 +36,13 @@
 .dialog-actions-container {
 	margin: 1rem 2rem;
 }
+
+.error-list {
+	display: flex;
+	color: #f44336;
+	font-size: 1.4rem;
+	margin-bottom: 0.5rem;
+	p {
+		margin: 0 0 0 0.5rem;
+	}
+}
