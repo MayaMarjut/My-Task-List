@@ -51,6 +51,11 @@ $my-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { 
+  padding: 0 5rem;
   margin: 0; 
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-tab-header.mat-mdc-tab-nav-bar-stretch-tabs .mat-mdc-tab-link {
+  max-width: 5rem;
 }

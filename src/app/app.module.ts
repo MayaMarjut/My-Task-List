@@ -4,10 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListViewComponent } from './lists/list-view.component';
-import { ListItemEditComponent } from './lists/list-item/list-item-edit/list-item-edit.component';
+import { ListItemEditComponent } from './lists/list-item/DEPRECATED-list-item-edit/list-item-edit.component';
 import { ListItemComponent } from './lists/list-item/list-item.component';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -27,11 +26,11 @@ import { EditListDialogComponent } from './lists/edit-list-dialog/edit-list-dial
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     ListViewComponent,
     ListItemEditComponent,
     LisItemDetailComponent,
@@ -57,7 +56,8 @@ import { MatTableModule } from '@angular/material/table';
     MatOptionModule,
     MatExpansionModule,
     MatMenuModule,
-    MatTableModule
+    MatTableModule,
+    MatTabsModule
   ],
   providers: [TaskService, ListService],
   bootstrap: [AppComponent]
