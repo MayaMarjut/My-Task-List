@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter } from 'rxjs';
 import { openCreateListDialog } from './create-list-dialog/create-list-dialog.component';
-import { ListItem } from './list.model';
 
 @Component({
   selector: 'app-list-view',
@@ -15,10 +14,8 @@ export class ListViewComponent implements OnInit {
 
   ngOnInit() {}
 
-  onNewListItem() {
-    const list = {} as ListItem;
-
-    openCreateListDialog(this.dialog, list)
+  createNewList() {
+    openCreateListDialog(this.dialog)
     .pipe(
       filter(val => !! val)
     )

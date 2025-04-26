@@ -1,18 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Task } from '../shared/task.model';
 import { TaskService } from './task-service';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { openCreateTaskDialog } from './create-task-dialog/create-task-dialog.component';
 
 @Component({
   selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.scss']
+  templateUrl: './task-view.component.html',
+  styleUrls: ['./task-view.component.scss']
 })
-export class TasksComponent implements OnInit, OnDestroy {
+export class TaskViewComponent implements OnInit, OnDestroy {
   tasks: Task[];
   private taskChangeSub: Subscription;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, 
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.tasks = this.taskService.getTasks();
@@ -26,6 +30,16 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.taskChangeSub.unsubscribe();
+  }
+
+  createNewTask() {
+    openCreateTaskDialog(this.dialog)
+    .pipe(
+      filter(val => !! val)
+      )
+      .subscribe(
+        val => console.log("new list value:", val)
+      )
   }
 
   onFilterTasks(sorting: string) {

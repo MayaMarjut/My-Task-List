@@ -95,7 +95,8 @@ export class CreateListDialogComponent implements OnInit {
   }
 }
 
-export function openCreateListDialog(dialog: MatDialog, list: ListItem ) {
+export function openCreateListDialog(dialog: MatDialog) {
+  const list = ListItem;
   const config = new MatDialogConfig();
 
   config.disableClose = true;

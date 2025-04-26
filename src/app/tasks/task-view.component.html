@@ -1,6 +1,15 @@
 <div class="row">
-	<div class="col-sm-3">
-		<h1>Tasks</h1>
+	<div class="task-view-header">
+		<div class="task-view-header__title">
+			<h1>Tasks</h1>
+		</div>
+		<div class="task-view-header__button">
+			<button mat-button color="primary" class="create-list-dialog-button-add"
+				(click)="createNewTask()">
+				<mat-icon>add</mat-icon>
+				Create new task
+			</button>
+		</div>
 	</div>
 	<div class="col-sm-10">
 		<app-task-edit></app-task-edit>

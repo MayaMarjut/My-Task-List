@@ -9,7 +9,7 @@ import { ListViewComponent } from './lists/list-view.component';
 import { ListItemEditComponent } from './lists/list-item/DEPRECATED-list-item-edit/list-item-edit.component';
 import { ListItemComponent } from './lists/list-item/list-item.component';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
-import { TasksComponent } from './tasks/tasks.component';
+import { TaskViewComponent } from './tasks/task-view.component';
 import { TaskService } from './tasks/task-service';
 import { LisItemDetailComponent } from './lists/list-item/list-item-detail/list-item-detail.component';
 import { ListService } from './lists/list.service';
@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CreateTaskDialogComponent } from './tasks/create-task-dialog/create-task-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     LisItemDetailComponent,
     ListItemComponent,
     TaskEditComponent,
-    TasksComponent,
+    TaskViewComponent,
     CreateListDialogComponent,
     EditListDialogComponent,
+    CreateTaskDialogComponent,
   ],
   imports: [
     BrowserModule,

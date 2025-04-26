@@ -1,0 +1,34 @@
+<div class="create-task-dialog-container">
+	<h2 mat-dialog-title>New Task</h2>
+	<mat-dialog-content [formGroup]="form">
+		<fieldset>
+			<legend class="create-task-dialog-legend">Create Task</legend>
+		</fieldset>
+		<mat-form-field appearance="outline">
+			<mat-label>Name</mat-label>
+			<input matInput placeholder="Task name" formControlName="name">
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>Description</mat-label>
+			<textarea matInput placeholder="Describtion of a task" formControlName="description"></textarea>
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>Status</mat-label>
+			<mat-select name="status" formControlName="status">
+				<mat-option *ngFor="let option of options; let i = index" [value]="option.value">{{option.viewValue}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</mat-dialog-content>
+	<mat-dialog-actions [align]="'end'" class="dialog-actions-container">
+		<button mat-button mat-stroked-button
+			(click)="close()">
+			Cancel
+		</button>
+		<button mat-button  mat-flat-button
+			color="primary"
+			(click)="save()"
+			[disabled]="!form.valid">
+			Save
+		</button>
+	</mat-dialog-actions>
+</div>
