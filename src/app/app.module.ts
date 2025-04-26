@@ -28,6 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CreateTaskDialogComponent } from './tasks/create-task-dialog/create-task-dialog.component';
+import { EditTaskDialogComponent } from './tasks/edit-task-dialog/edit-task-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CreateTaskDialogComponent } from './tasks/create-task-dialog/create-tas
     CreateListDialogComponent,
     EditListDialogComponent,
     CreateTaskDialogComponent,
+    EditTaskDialogComponent,
   ],
   imports: [
     BrowserModule,

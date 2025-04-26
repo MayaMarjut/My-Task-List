@@ -4,6 +4,7 @@ import { TaskService } from './task-service';
 import { filter, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { openCreateTaskDialog } from './create-task-dialog/create-task-dialog.component';
+import { openEditTaskDialog } from './edit-task-dialog/edit-task-dialog.component';
 
 @Component({
   selector: 'app-tasks',
@@ -38,8 +39,18 @@ export class TaskViewComponent implements OnInit, OnDestroy {
       filter(val => !! val)
       )
       .subscribe(
-        val => console.log("new list value:", val)
+        val => console.log("new l value:", val)
       )
+  }
+
+  editTask(task: Task, index: number) {
+    openEditTaskDialog(this.dialog, task, index)
+    .pipe(
+      filter(val => !! val)
+    )
+    .subscribe(
+      val => console.log("Updated value:", val)
+    )
   }
 
   onFilterTasks(sorting: string) {
