@@ -3,8 +3,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, V
 import { ListItem } from '../list.model';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ListService } from '../list.service';
-import { Task } from 'src/app/shared/task.model';
-import { Status } from 'src/app/shared/taskStatus.model';
+import { Task, Status } from 'src/app/shared/task.model';
 
 @Component({
   selector: 'app-create-list-dialog',
@@ -28,9 +27,9 @@ export class CreateListDialogComponent implements OnInit {
   form: FormGroup;
 
   options: Status[] = [
-    { value: 'todo', viewValue: 'ToDo'},
-    { value: 'doing', viewValue: 'Doing'},
-    { value: 'done', viewValue: 'Done'},
+    { value: "todo", viewValue: "Todo"},
+    { value: "doing", viewValue: "Doing"},
+    { value: "done", viewValue: "Done"},
   ];
 
   ngOnInit() {
@@ -75,8 +74,8 @@ export class CreateListDialogComponent implements OnInit {
   private createTaskFormGroup(task?: Task): FormGroup {
     return this._fb.group({
       name: [task?.name ?? '', Validators.required],
+      description: [task?.description ?? ''],
       status: [task?.status ?? null, Validators.required],
-      description: [task?.description ?? '']
     });
   }
 
@@ -84,7 +83,7 @@ export class CreateListDialogComponent implements OnInit {
     const taskGroup = this._fb.group({
       name: [''],
       description: [''],
-      status: [null],
+      status: {value: null, viewValue: null},
     });
   
    this.tasks.push(taskGroup);

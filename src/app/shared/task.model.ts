@@ -1,13 +1,25 @@
-import { StatusOption } from "./taskStatus.model";
-
 export class Task {
   public name: string;
-	public status: StatusOption;
 	public description: string;
+  public status: Status;
 
-  constructor(name: string, stat: StatusOption, desc: string) {
+  constructor(name: string, desc: string, stat: Status) {
     this.name = name;
-    this.status = stat;
 		this.description = desc;
+    this.status = stat;
   }
+}
+
+export interface TaskTableRow {
+  index: number;
+  name: string;
+  description: string;
+  status: Status;
+}
+
+export type StatusOption  = 'Doing' | 'Done' | 'Todo';
+
+export interface Status {
+  value: string,
+  viewValue: StatusOption,
 }

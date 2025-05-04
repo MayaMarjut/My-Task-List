@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource" *ngIf="list.tasks.length > 0; else noTasks">
 	<ng-container matColumnDef="index">
 		<th mat-header-cell *matHeaderCellDef> Task no. </th>
 		<td mat-cell *matCellDef="let task"> {{task.index}} </td>
@@ -16,9 +16,13 @@
 
 	<ng-container matColumnDef="status">
 		<th mat-header-cell *matHeaderCellDef> Status </th>
-		<td mat-cell *matCellDef="let task"> {{task.status}} </td>
+		<td mat-cell *matCellDef="let task"> {{task.status.viewValue}} </td>
 	</ng-container>
 
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 	<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<ng-template #noTasks>
+	<p>No tasks to show</p>
+  </ng-template>

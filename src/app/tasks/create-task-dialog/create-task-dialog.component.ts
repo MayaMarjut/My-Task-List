@@ -1,8 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { Task } from 'src/app/shared/task.model';
+import { Status, Task } from 'src/app/shared/task.model';
 import { TaskService } from '../task-service';
-import { Status } from 'src/app/shared/taskStatus.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -19,9 +18,9 @@ export class CreateTaskDialogComponent {
       form: FormGroup;
 
       options: Status[] = [
-        { value: 'todo', viewValue: 'ToDo'},
-        { value: 'doing', viewValue: 'Doing'},
-        { value: 'done', viewValue: 'Done'},
+        { value: "todo", viewValue: "Doing"},
+        { value: "doing", viewValue: "Done"},
+        { value: "done", viewValue: "Todo"},
       ];
 
       ngOnInit() {

@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  links = [{name:'Lists', router: '/lists'}, {name:'Tasks',router: '/tasks'}];
+  links = [{name:'Lists', router: '/lists'}, {name:'Tasks', router: '/tasks'}];
   activeLink = this.links[0];
 }

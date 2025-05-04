@@ -1,0 +1,22 @@
+.create-task-dialog {
+	&-status-row {
+		display: flex;
+		justify-content: space-between;
+	}
+	&-description-row {
+		padding-top: 2rem;
+		display: flex;
+	}
+}
+
+.create-task-dialog-container-task-group {
+	&__name,
+	&__desc {
+		width: 30rem;
+	}
+
+	.create-task-dialog-legend {
+		border-bottom: 0;
+	}
+
+}

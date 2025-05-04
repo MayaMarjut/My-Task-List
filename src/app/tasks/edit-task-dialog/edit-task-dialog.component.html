@@ -1,22 +1,28 @@
 <div class="edit-task-dialog-container">
-	<mat-dialog-content [formGroup]="form">
-		<fieldset>
-			<legend class="create-task-dialog-legend">Edit Task</legend>
-		<mat-form-field appearance="outline">
-			<mat-label>Name</mat-label>
-			<input matInput placeholder="Task name" formControlName="name">
-		</mat-form-field>
-		<mat-form-field appearance="outline">
-			<mat-label>Description</mat-label>
-			<textarea matInput placeholder="Describtion of a task" formControlName="description"></textarea>
-		</mat-form-field>
-		<mat-form-field appearance="outline">
-			<mat-label>Status</mat-label>
-			<mat-select name="status" formControlName="status">
-				<mat-option *ngFor="let option of options; let i = index" [value]="option.value">{{option.viewValue}}</mat-option>
-			</mat-select>
-		</mat-form-field>
-	</fieldset>
+	<mat-dialog-content>
+		<form [formGroup]="form">
+			<fieldset class="edit-task-dialog-container-task-group">
+				<legend class="edit-task-dialog-legend">Edit Task</legend>
+				<div class="edit-task-dialog-status-row">
+					<mat-form-field appearance="outline">
+						<mat-label>Name</mat-label>
+						<input matInput placeholder="Task name" formControlName="name">
+					</mat-form-field>
+					<mat-form-field appearance="outline">
+						<mat-label>Status</mat-label>
+						<mat-select name="status" formControlName="status">
+							<mat-option *ngFor="let option of options; let i = index" [value]="option">{{option.viewValue}}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div class="edit-task-dialog-description-row">
+					<mat-form-field appearance="outline" class="edit-task-dialog-container-task-group__desc">
+						<mat-label>Description</mat-label>
+						<textarea matInput placeholder="Describtion of a task" formControlName="description"></textarea>
+					</mat-form-field>
+				</div>
+			</fieldset>
+		</form>
 	</mat-dialog-content>
 	<mat-dialog-actions [align]="'end'" class="dialog-actions-container">
 		<button mat-button mat-stroked-button

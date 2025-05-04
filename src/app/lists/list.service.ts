@@ -1,26 +1,28 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { ListItem } from "./list.model";
 import { Subject } from "rxjs";
-import { Task } from "../shared/task.model";
+import { Task, Status } from "../shared/task.model";
 import { TaskService } from "../tasks/task-service";
-import { StatusOption } from "../shared/taskStatus.model";
 
 @Injectable()
 export class ListService {
 	listChanged = new Subject<ListItem[]>;
-	stat1: StatusOption = 'Doing';
-	stat2: StatusOption = 'Done';
-	stat3: StatusOption = 'Todo';
+
+    options: Status[] = [
+		{ value: 'todo', viewValue: "Todo"},
+		{ value: 'doing', viewValue: "Doing"},
+		{ value: 'done', viewValue: "Done"},
+	  ];
 
 
 	private lists: ListItem[] = [
 		new ListItem('Cleaning List', [
-			new Task('Clean windows', this.stat1, 'Clean the kitchen window'),
-			new Task('Clean toilet', this.stat2, 'It is dirty'),
+			new Task('Clean windows', 'Clean the kitchen window', this.options[1]),
+			new Task('Clean toilet','It is dirty',this.options[0]),
 		]),
 		new ListItem('Homework', [
-			new Task('Study French',this.stat3, 'Read the chapters 1 and 2'),
-			new Task('Study Math', this.stat1, 'Do the homework'),
+			new Task('Study French', 'Read the chapters 1 and 2', this.options[2]),
+			new Task('Study Math','Do the homework', this.options[0]),
 		]),
 	  ];
 

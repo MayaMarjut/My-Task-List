@@ -1,16 +1,12 @@
-import { Task } from "../shared/task.model";
+import { Task, Status } from "../shared/task.model";
 import { Subject } from "rxjs";
-import { StatusOption } from "../shared/taskStatus.model";
 
 export class TaskService {
 	taskChanged = new Subject<Task[]>();
-	startedEditing = new Subject<number>();
-	stat1: StatusOption = 'Todo';
-	stat2: StatusOption = 'Done';
 
 	private tasks: Task[] = [
-		new Task('Vacuum', this.stat1, 'Vacuum the whole house'),
-		new Task('Go grocery shopping',this.stat2, 'By everything for the dinner'),
+		new Task('Vacuum', 'Vacuum the whole house', { value: "todo", viewValue: "Todo"}),
+		new Task('Go grocery shopping','By everything for the dinner', { value: "dodo", viewValue: "Done"}),
 	];
 
 	getTasks() {

@@ -4,9 +4,7 @@ import { TaskViewComponent } from './tasks/task-view.component';
 import { ListViewComponent } from './lists/list-view.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/lists', pathMatch: 'full'},
-  {path: 'lists', component: ListViewComponent, children: [
-  ]},
+  {path: 'lists', component: ListViewComponent },
   {path: 'tasks', component: TaskViewComponent},
 ];
 

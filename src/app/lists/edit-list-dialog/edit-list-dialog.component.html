@@ -20,7 +20,7 @@
 						<mat-form-field appearance="outline">
 							<mat-label>Status</mat-label>
 							<mat-select name="status" formControlName="status">
-								<mat-option *ngFor="let option of options; let i = index" [value]="option.value">{{option.viewValue}}</mat-option>
+								<mat-option *ngFor="let option of options; let i = index" [value]="option">{{option.viewValue}}</mat-option>
 							</mat-select>
 						</mat-form-field>
 					</div>

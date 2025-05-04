@@ -3,8 +3,7 @@ import { ListItem } from '../list.model';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ListService } from '../list.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Task } from 'src/app/shared/task.model';
-import { Status } from 'src/app/shared/taskStatus.model';
+import { Task, Status } from 'src/app/shared/task.model';
 
 @Component({
   selector: 'app-edit-list-dialog',
@@ -23,9 +22,9 @@ export class EditListDialogComponent {
     lists: ListItem[];
 
     options: Status[] = [
-      { value: 'todo', viewValue: 'ToDo'},
-      { value: 'doing', viewValue: 'Doing'},
-      { value: 'done', viewValue: 'Done'},
+      { value: 'todo', viewValue: "Todo"},
+      { value: 'doing', viewValue: "Doing"},
+      { value: 'done', viewValue: "Done"},
     ];
   
 
@@ -44,7 +43,7 @@ export class EditListDialogComponent {
       const taskGroup = this._fb.group({
         name: [''],
         description: [''],
-        status: [null],
+        status: {value: null, viewValue: null},
       });
     
      this.tasks.push(taskGroup);
@@ -75,8 +74,8 @@ export class EditListDialogComponent {
     private createTaskFormGroup(task?: Task): FormGroup {
       return this._fb.group({
         name: [task?.name ?? '', Validators.required],
+        description: [task?.description ?? ''],
         status: [task?.status ?? null, Validators.required],
-        description: [task?.description ?? '']
       });
     }
 }
