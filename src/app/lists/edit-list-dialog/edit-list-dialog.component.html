@@ -19,7 +19,7 @@
 						</mat-form-field>
 						<mat-form-field appearance="outline">
 							<mat-label>Status</mat-label>
-							<mat-select name="status" formControlName="status">
+							<mat-select name="status" formControlName="status" [compareWith]="compareStatusOptions">
 								<mat-option *ngFor="let option of options; let i = index" [value]="option">{{option.viewValue}}</mat-option>
 							</mat-select>
 						</mat-form-field>

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { TaskService } from '../task-service';
 import { Task, Status } from 'src/app/shared/task.model';
@@ -26,7 +26,7 @@ export class EditTaskDialogComponent {
 
   ngOnInit() {
     this.form = this._fb.group({
-      name: this.data.task.name,
+      name: [this.data.task.name, Validators.required],
       description: this.data.task.description,
       status: this.data.task.status
     })
@@ -45,6 +45,10 @@ export class EditTaskDialogComponent {
 
     this.dialogRef.close(this.form.value);
     this.taskService.updateTask(this.data.id, updateTask);
+  }
+
+  compareStatusOptions(option1: any, option2: any): boolean {
+    return option1 && option2 ? option1.value === option2.value : option1 === option2;
   }
 }
 

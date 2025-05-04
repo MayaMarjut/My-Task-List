@@ -6,7 +6,7 @@ export class TaskService {
 
 	private tasks: Task[] = [
 		new Task('Vacuum', 'Vacuum the whole house', { value: "todo", viewValue: "Todo"}),
-		new Task('Go grocery shopping','By everything for the dinner', { value: "dodo", viewValue: "Done"}),
+		new Task('Go grocery shopping','By everything for the dinner', { value: "done", viewValue: "Done"}),
 	];
 
 	getTasks() {

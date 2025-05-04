@@ -67,6 +67,10 @@ export class EditListDialogComponent {
       this.dialogRef.close(updatedList);
     }
 
+    compareStatusOptions(option1: any, option2: any): boolean {
+      return option1 && option2 ? option1.value === option2.value : option1 === option2;
+    }
+
     get tasks(): FormArray {
       return this.form.get('tasks') as FormArray;
     }

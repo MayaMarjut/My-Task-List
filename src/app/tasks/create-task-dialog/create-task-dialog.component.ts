@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Status, Task } from 'src/app/shared/task.model';
 import { TaskService } from '../task-service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -25,7 +25,7 @@ export class CreateTaskDialogComponent {
 
       ngOnInit() {
         this.form = this._fb.group({
-          name: this.task.name,
+          name: [this.task.name, Validators.required],
           description: this.task.description,
           status: this.task.status,
         })
